@@ -9,8 +9,9 @@ export function registerBopLanguage(monaco: Monaco) {
 
   monaco.languages.setMonarchTokensProvider("bop", {
     keywords: [
-      "let", "fn", "return", "if", "else", "while", "for", "in",
-      "repeat", "break", "continue",
+      "let", "const", "fn", "pub", "return", "if", "else", "while",
+      "for", "in", "repeat", "break", "continue", "use", "as",
+      "struct", "enum", "match", "try", "ref",
     ],
     literals: ["true", "false", "none"],
     builtinGameFns: [
@@ -20,12 +21,13 @@ export function registerBopLanguage(monaco: Monaco) {
       "diamond_ahead", "diamond_here", "pit_ahead", "inventory", "grid_size",
     ],
     builtinUtilFns: [
-      "range", "str", "int", "type", "abs", "min", "max", "len",
-      "print", "inspect", "rand",
+      "range", "str", "int", "type", "abs", "min", "max", "len", "print",
+      "inspect", "rand", "try_call", "panic", "sqrt", "sin", "cos", "tan",
+      "floor", "ceil", "round", "exp", "log", "pow",
     ],
     operators: [
-      "==", "!=", "<=", ">=", "&&", "||", "+=", "-=", "*=", "/=",
-      "=>", "+", "-", "*", "/", "%", "=", "<", ">", "!", "..",
+      "==", "!=", "<=", ">=", "&&", "||", "+=", "-=", "*=", "/=", "%=",
+      "=>", "::", "+", "-", "*", "/", "%", "=", "<", ">", "!", "..",
     ],
     symbols: /[=><!~?:&|+\-*/%@#.]+/,
     tokenizer: {

@@ -2,12 +2,14 @@
 name = "bopcode-wasm"
 version = "0.1.0"
 edition = "2024"
+rust-version = "1.88"
 
 [lib]
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-bop-lang = "0.2"
+bop-lang = "0.4"
+bop-vm = "0.4"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 wasm-bindgen = "0.2"

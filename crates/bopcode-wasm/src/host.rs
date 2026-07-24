@@ -42,12 +42,7 @@ impl BopCodeHost {
     }
 
     fn error(&self, line: u32, message: impl Into<String>) -> BopError {
-        BopError {
-            line: Some(line),
-            column: None,
-            message: message.into(),
-            friendly_hint: None,
-        }
+        BopError::runtime(message, line)
     }
 
     fn error_with_hint(
@@ -56,12 +51,9 @@ impl BopCodeHost {
         message: impl Into<String>,
         hint: impl Into<String>,
     ) -> BopError {
-        BopError {
-            line: Some(line),
-            column: None,
-            message: message.into(),
-            friendly_hint: Some(hint.into()),
-        }
+        let mut error = BopError::runtime(message, line);
+        error.friendly_hint = Some(hint.into());
+        error
     }
 
     fn expect_args(
@@ -592,18 +584,17 @@ impl BopHost for BopCodeHost {
         });
     }
 
+    fn resolve_module(&mut self, name: &str) -> Option<Result<String, BopError>> {
+        bop::stdlib::resolve(name).map(|source| Ok(source.to_string()))
+    }
+
     fn function_hint(&self) -> &str {
         "Available game functions: move, turn, grab, drop, say, wait, look, position, facing"
     }
 
     fn on_tick(&mut self) -> Result<(), BopError> {
         if self.puzzle_completed || self.halted {
-            Err(BopError {
-                line: None,
-                column: None,
-                message: "halted".to_string(),
-                friendly_hint: None,
-            })
+            Err(BopError::runtime("halted", 0))
         } else {
             Ok(())
         }

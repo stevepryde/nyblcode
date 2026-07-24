@@ -4,7 +4,7 @@ bopcode is a free, open-source coding game that teaches programming fundamentals
 
 ## How it works
 
-The entire application runs client-side. A Rust engine compiled to WebAssembly executes your code, and a React frontend renders the grid and plays back the results. Your progress is saved in localStorage and never leaves your device.
+The entire application runs client-side. A Rust bytecode VM compiled to WebAssembly executes Bop 0.4 code, including standard-library modules and reference parameters, while a React frontend renders the grid and plays back the results. Your progress is saved in localStorage and never leaves your device.
 
 ## Running locally
 

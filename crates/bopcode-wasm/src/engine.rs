@@ -58,7 +58,7 @@ pub fn run_simulation(code: &str, puzzle: &PuzzleConfig) -> SimulationResult {
         max_memory: limits.max_memory,
     };
 
-    let run_error = bop::run(code, &mut host, &bop_limits).err();
+    let run_error = bop_vm::run(code, &mut host, &bop_limits).err();
 
     // Determine the final error:
     // - If the host halted with a game error, use that

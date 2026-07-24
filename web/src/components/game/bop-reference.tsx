@@ -10,14 +10,14 @@ export function BopReference() {
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition-colors cursor-pointer"
       >
-        Bop Language Reference
+        Bop 0.4 Language Reference
         {isOpen ? (
           <ChevronDown className="h-4 w-4" />
         ) : (
           <ChevronUp className="h-4 w-4" />
         )}
         <a
-          href="https://stevepryde.github.io/bop-lang/"
+          href="https://bop-lang.com/docs/"
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => e.stopPropagation()}
@@ -91,11 +91,15 @@ export function BopReference() {
             </h3>
             <dl className="space-y-1">
               <Fn name="let x = 5" desc="Declare a variable" />
+              <Fn name="const LIMIT = 10" desc="Declare a constant" />
               <Fn name="if / else" desc="Conditional branching" />
               <Fn name="while cond { }" desc="Loop while true" />
               <Fn name="for x in list { }" desc="Loop over items" />
               <Fn name="repeat 3 { }" desc="Loop n times" />
               <Fn name="fn name(a) { }" desc="Define a function" />
+              <Fn name="fn change(ref x) { }" desc="Update a caller variable" />
+              <Fn name="match value { }" desc="Match values and enum variants" />
+              <Fn name="use std.math" desc="Load a standard-library module" />
               <Fn name='say("hi")' desc="Display a message" />
               <Fn name="range(n)" desc="[0, 1, ..., n-1]" />
             </dl>

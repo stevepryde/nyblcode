@@ -290,7 +290,7 @@ export function PuzzlePlayground({
     } finally {
       setIsRunning(false);
     }
-  }, [puzzle.puzzle_id, code, puzzle.bot_start, puzzle.grid, puzzle.star_objectives]);
+  }, [puzzle, code]);
 
   // Playback handlers
   const handlePlay = () => {

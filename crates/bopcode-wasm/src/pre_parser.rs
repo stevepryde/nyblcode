@@ -10,7 +10,7 @@ const RESERVED_KEYWORDS: &[&str] = &[
     "as",
     // Error prevention
     "try", "catch", "throw", "async", "await", "yield", "const", "var", "pub", "use", "mod",
-    "enum", "struct", "type",
+    "enum", "struct", "type", "ref",
     // Confusion prevention
     "null",
 ];

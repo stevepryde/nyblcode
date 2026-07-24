@@ -235,6 +235,24 @@ mod tests {
     }
 
     #[test]
+    fn test_reference_parameters() {
+        assert_eq!(
+            run_output(
+                "fn increment(ref value) { value += 1 }\nlet count = 2\nincrement(ref count)\nsay(count)"
+            ),
+            vec!["3"]
+        );
+    }
+
+    #[test]
+    fn test_standard_library_modules() {
+        assert_eq!(
+            run_output("use std.math\nsay(clamp(12, 0, 10))"),
+            vec!["10"]
+        );
+    }
+
+    #[test]
     fn test_print_is_say() {
         assert_eq!(run_output("print(42)"), vec!["42"]);
         assert_eq!(run_output("print(1, 2, 3)"), vec!["1 2 3"]);
@@ -336,6 +354,9 @@ mod tests {
     #[test]
     fn test_reserved_word_precheck() {
         let err = run_err("let for = 5");
+        assert!(err.message.contains("reserved"));
+
+        let err = run_err("let ref = 5");
         assert!(err.message.contains("reserved"));
     }
 
