@@ -1,7 +1,7 @@
 .PHONY: wasm test build-all dev clean
 
 wasm:
-	cd crates/bopcode-wasm && wasm-pack build --target web --out-dir ../../web/src/wasm
+	cd crates/nyblcode-wasm && wasm-pack build --target web --out-dir ../../web/src/wasm
 
 test:
 	cargo test

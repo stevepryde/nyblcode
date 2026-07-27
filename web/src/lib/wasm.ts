@@ -10,7 +10,7 @@ let wasmModule: any = null;
 
 export async function initWasm(): Promise<void> {
   if (wasmModule) return;
-  const wasm = await import("@/wasm/bopcode_wasm");
+  const wasm = await import("@/wasm/nyblcode_wasm");
   await wasm.default();
   wasmModule = wasm;
 }

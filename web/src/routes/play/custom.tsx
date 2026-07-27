@@ -4,7 +4,7 @@ import { PuzzlePlayground } from "@/components/game/puzzle-playground";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ColorModeToggle } from "@/components/ui/color-mode-toggle";
-import { BopIcon } from "@/components/ui/bop-icon";
+import { NyblIcon } from "@/components/ui/nybl-icon";
 import { WORLD_THEME_CLASS } from "@/lib/theme";
 import type { PuzzleConfig } from "@/types/game";
 
@@ -15,7 +15,7 @@ export const Route = createFileRoute("/play/custom")({
 function CustomPlayPage() {
   const navigate = useNavigate();
   const [puzzle, setPuzzle] = useState<PuzzleConfig | null>(() => {
-    const raw = sessionStorage.getItem("bopcode_custom_play");
+    const raw = sessionStorage.getItem("nyblcode_custom_play");
     if (!raw) return null;
     try {
       return JSON.parse(raw) as PuzzleConfig;
@@ -57,7 +57,7 @@ function CustomPlayPage() {
               variant="ghost"
               size="sm"
               onClick={() => {
-                sessionStorage.removeItem("bopcode_custom_play");
+                sessionStorage.removeItem("nyblcode_custom_play");
                 setPuzzle(null);
                 navigate({ to: "/" });
               }}
@@ -67,8 +67,8 @@ function CustomPlayPage() {
               Home
             </Button>
             <span className="flex items-center gap-1.5 text-sm font-bold tracking-tight text-indigo-400">
-              <BopIcon className="h-4 w-4" />
-              bopcode
+              <NyblIcon className="h-4 w-4" />
+              nyblcode
             </span>
           </div>
 
@@ -94,7 +94,7 @@ function CustomPlayPage() {
           worldName="Custom"
           onNextPuzzle={() => {}}
           onWorldComplete={() => {
-            sessionStorage.removeItem("bopcode_custom_play");
+            sessionStorage.removeItem("nyblcode_custom_play");
             navigate({ to: "/" });
           }}
           onComplete={handleComplete}

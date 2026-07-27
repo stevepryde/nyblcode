@@ -11,7 +11,7 @@ import {
 } from "@/lib/editor-store";
 import { ConfirmModal } from "@/components/ui/confirm-modal";
 import { ColorModeToggle } from "@/components/ui/color-mode-toggle";
-import { BopIcon } from "@/components/ui/bop-icon";
+import { NyblIcon } from "@/components/ui/nybl-icon";
 import { WORLD_THEME_CLASS } from "@/lib/theme";
 import { DesignTab, type EditorTool } from "./design-tab";
 import { ConfigTab } from "./config-tab";
@@ -114,7 +114,7 @@ export function LevelEditor() {
         </button>
 
         <h1 className="flex items-center gap-2 text-lg font-bold text-indigo-400">
-          <BopIcon className="h-5 w-5" />
+          <NyblIcon className="h-5 w-5" />
           Level Editor
         </h1>
 

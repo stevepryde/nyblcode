@@ -1,3 +1,3 @@
 [workspace]
-members = ["crates/bopcode-wasm"]
+members = ["crates/nyblcode-wasm"]
 resolver = "2"

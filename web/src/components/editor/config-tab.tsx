@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import Editor from "@monaco-editor/react";
 import { ChevronDown, ChevronRight } from "lucide-react";
-import { registerBopLanguage } from "@/lib/monaco-bop";
+import { registerNyblLanguage } from "@/lib/monaco-nybl";
 import { useColorMode } from "@/lib/theme";
 import type { PuzzleConfig, PuzzleObjective, TileType, WorldTheme } from "@/types/game";
 
@@ -269,11 +269,11 @@ export function ConfigTab({ config, onConfigChange }: ConfigTabProps) {
                             <div className="h-32 rounded-md overflow-hidden border border-zinc-300 dark:border-zinc-700">
                                 <Editor
                                     height="100%"
-                                    language="bop"
+                                    language="nybl"
                                     theme={monacoTheme}
                                     value={config.starter_code}
                                     onChange={(val) => update({ starter_code: val ?? "" })}
-                                    beforeMount={registerBopLanguage}
+                                    beforeMount={registerNyblLanguage}
                                     options={{
                                         minimap: { enabled: false },
                                         lineNumbers: "on",

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp, ExternalLink } from "lucide-react";
 
-export function BopReference() {
+export function NyblReference() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -10,14 +10,14 @@ export function BopReference() {
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-center gap-2 px-4 py-2 text-sm text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800/50 transition-colors cursor-pointer"
       >
-        Bop 0.4 Language Reference
+        Nybl 0.4 Language Reference
         {isOpen ? (
           <ChevronDown className="h-4 w-4" />
         ) : (
           <ChevronUp className="h-4 w-4" />
         )}
         <a
-          href="https://bop-lang.com/docs/"
+          href="https://nybl-lang.com/docs/"
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => e.stopPropagation()}

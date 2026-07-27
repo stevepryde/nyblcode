@@ -392,8 +392,8 @@ mod tests {
     fn test_get_puzzle_exists() {
         assert!(levels::get_puzzle("puzzle-1").is_some());
         assert!(levels::get_puzzle("puzzle-14").is_some());
-        assert!(levels::get_puzzle("bop-beg-01").is_some());
-        assert!(levels::get_puzzle("bop-int-01").is_some());
+        assert!(levels::get_puzzle("nybl-beg-01").is_some());
+        assert!(levels::get_puzzle("nybl-int-01").is_some());
     }
 
     #[test]

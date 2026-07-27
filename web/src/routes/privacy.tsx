@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { ColorModeToggle } from "@/components/ui/color-mode-toggle";
-import { BopIcon } from "@/components/ui/bop-icon";
+import { NyblIcon } from "@/components/ui/nybl-icon";
 
 export const Route = createFileRoute("/privacy")({
   component: PrivacyPage,
@@ -24,8 +24,8 @@ function PrivacyPage() {
               to="/"
               className="flex items-center gap-2 text-xl font-bold tracking-tight text-indigo-400"
             >
-              <BopIcon className="h-6 w-6" />
-              bopcode
+              <NyblIcon className="h-6 w-6" />
+              nyblcode
             </Link>
             <ColorModeToggle />
           </div>
@@ -41,7 +41,7 @@ function PrivacyPage() {
           </p>
 
           <p>
-            bopcode is designed with your privacy in mind. We believe you
+            nyblcode is designed with your privacy in mind. We believe you
             shouldn't have to trade your personal data to learn how to code.
           </p>
 
@@ -57,7 +57,7 @@ function PrivacyPage() {
             What data is stored
           </h2>
           <p>
-            bopcode saves your progress and code locally in your browser using{" "}
+            nyblcode saves your progress and code locally in your browser using{" "}
             <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded">
               localStorage
             </code>
@@ -71,14 +71,14 @@ function PrivacyPage() {
           </ul>
           <p>
             You can clear this data at any time by clearing your browser's site
-            data for bopcode, or by using the reset options within the app.
+            data for nyblcode, or by using the reset options within the app.
           </p>
 
           <h2 className="text-xl font-semibold text-zinc-900 dark:text-white mt-8">
             No server, no tracking
           </h2>
           <p>
-            bopcode is a static website. There is no backend server processing
+            nyblcode is a static website. There is no backend server processing
             your requests. The entire application, including the code execution
             engine, runs in your browser via WebAssembly. We do not use:
           </p>
@@ -94,7 +94,7 @@ function PrivacyPage() {
             Hosting
           </h2>
           <p>
-            bopcode is hosted on Cloudflare Pages. Cloudflare may collect
+            nyblcode is hosted on Cloudflare Pages. Cloudflare may collect
             standard web server logs (such as IP addresses and request
             timestamps) as part of their infrastructure. This is standard for
             any website on the internet and is not something we control or
@@ -126,12 +126,12 @@ function PrivacyPage() {
             If you have questions about this policy, you can open an issue on
             the{" "}
             <a
-              href="https://github.com/probablysteve/bopcode"
+              href="https://github.com/probablysteve/nyblcode"
               target="_blank"
               rel="noopener noreferrer"
               className="text-indigo-500 dark:text-indigo-400 underline hover:no-underline"
             >
-              bopcode GitHub repository
+              nyblcode GitHub repository
             </a>
             .
           </p>

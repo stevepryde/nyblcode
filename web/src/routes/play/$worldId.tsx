@@ -12,7 +12,7 @@ import {
 } from "@/lib/progress";
 import { WORLD_THEME_CLASS } from "@/lib/theme";
 import { ColorModeToggle } from "@/components/ui/color-mode-toggle";
-import { BopIcon } from "@/components/ui/bop-icon";
+import { NyblIcon } from "@/components/ui/nybl-icon";
 import type { PuzzleConfig, GameProgress } from "@/types/game";
 import { ArrowLeft, List, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -148,8 +148,8 @@ function PlayPage() {
               {worldTitle}
             </Button>
             <span className="flex items-center gap-1.5 text-sm font-bold tracking-tight text-indigo-400">
-              <BopIcon className="h-4 w-4" />
-              bopcode
+              <NyblIcon className="h-4 w-4" />
+              nyblcode
             </span>
           </div>
 

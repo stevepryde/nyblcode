@@ -6,7 +6,7 @@ import { getProgress } from "@/lib/progress";
 import { importConfigFromJson } from "@/lib/editor-store";
 import { Button } from "@/components/ui/button";
 import { ColorModeToggle } from "@/components/ui/color-mode-toggle";
-import { BopIcon } from "@/components/ui/bop-icon";
+import { NyblIcon } from "@/components/ui/nybl-icon";
 import { WORLD_THEME_CLASS } from "@/lib/theme";
 import type { WorldInfo } from "@/types/game";
 
@@ -53,7 +53,7 @@ function HomePage() {
         if (!file) return;
         try {
             const config = await importConfigFromJson(file);
-            sessionStorage.setItem("bopcode_custom_play", JSON.stringify(config));
+            sessionStorage.setItem("nyblcode_custom_play", JSON.stringify(config));
             setShowCustomModal(false);
             navigate({ to: "/play/custom" });
         } catch (err) {
@@ -68,8 +68,8 @@ function HomePage() {
             <header className="bg-zinc-50 dark:bg-zinc-900/80 border-b border-zinc-200 dark:border-zinc-800">
                 <div className="max-w-5xl mx-auto px-6 py-4 flex items-center gap-2">
                     <h1 className="flex items-center gap-2 text-xl font-bold tracking-tight text-indigo-400">
-                        <BopIcon className="h-6 w-6" />
-                        bopcode
+                        <NyblIcon className="h-6 w-6" />
+                        nyblcode
                     </h1>
                     <div className="ml-auto flex items-center gap-2">
                         <button
@@ -99,7 +99,7 @@ function HomePage() {
                         Learn to code by solving puzzles
                     </h2>
                     <p className="text-zinc-500 dark:text-zinc-400 text-lg max-w-2xl">
-                        Bop is a small language designed to introduce you to programming with
+                        Nybl is a small language designed to introduce you to programming with
                         real code. You'll learn the fundamentals of programming and start
                         to think like a software developer. No coding experience required.
                     </p>
@@ -194,7 +194,7 @@ function HomePage() {
                             Terms of Service
                         </a>
                         <a
-                            href="https://github.com/stevepryde/bopcode"
+                            href="https://github.com/stevepryde/nyblcode"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"

@@ -14,7 +14,7 @@ export const WORLD_THEME_CLASS: Record<WorldTheme, string> = {
 // Color mode (dark / light)
 // ---------------------------------------------------------------------------
 
-const STORAGE_KEY = "bopcode_color_mode";
+const STORAGE_KEY = "nyblcode_color_mode";
 
 export type ColorMode = "dark" | "light";
 

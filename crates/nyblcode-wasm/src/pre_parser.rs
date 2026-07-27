@@ -29,7 +29,7 @@ pub fn pre_check(code: &str) -> Option<SimulationError> {
             return Some(SimulationError {
                 line,
                 column: None,
-                message: format!("`{}` is a reserved word in Bop", keyword),
+                message: format!("`{}` is a reserved word in Nybl", keyword),
                 friendly_hint: Some(format!(
                     "You can't use `{}` as a variable name — try something like `my_{}` instead!",
                     keyword, keyword
@@ -52,7 +52,7 @@ pub fn pre_check(code: &str) -> Option<SimulationError> {
             return Some(SimulationError {
                 line,
                 column: None,
-                message: format!("`{}` is a reserved word in Bop", keyword),
+                message: format!("`{}` is a reserved word in Nybl", keyword),
                 friendly_hint: Some(format!(
                     "You can't name a function `{}` — try something like `do_{}` instead!",
                     keyword, keyword

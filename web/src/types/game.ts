@@ -1,6 +1,6 @@
 /**
  * Game types for the puzzle playground.
- * Mirrors the Rust types in bopcode-wasm/src/models.rs.
+ * Mirrors the Rust types in nyblcode-wasm/src/models.rs.
  */
 
 export interface Position {

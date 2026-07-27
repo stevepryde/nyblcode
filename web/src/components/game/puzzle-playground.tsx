@@ -5,11 +5,11 @@ import { GameGrid } from "./game-grid";
 import { PlaybackControls } from "./playback-controls";
 import { PuzzleObjectivePanel } from "./puzzle-objective";
 import { CelebrationOverlay } from "./celebration-overlay";
-import { BopReference } from "./bop-reference";
+import { NyblReference } from "./nybl-reference";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { runSimulationWithConfig } from "@/lib/wasm";
-import { registerBopLanguage } from "@/lib/monaco-bop";
+import { registerNyblLanguage } from "@/lib/monaco-nybl";
 import { useColorMode } from "@/lib/theme";
 import type {
   PuzzleConfig,
@@ -55,7 +55,7 @@ export function PuzzlePlayground({
   const [currentActionIndex, setCurrentActionIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [speed, setSpeed] = useState<PlaybackSpeed>(() => {
-    const saved = localStorage.getItem("bopcode_speed");
+    const saved = localStorage.getItem("nyblcode_speed");
     if (saved) {
       const n = Number(saved);
       if (n === 0.5 || n === 1 || n === 2 || n === 4) return n as PlaybackSpeed;
@@ -65,7 +65,7 @@ export function PuzzlePlayground({
 
   // Persist speed to localStorage
   useEffect(() => {
-    localStorage.setItem("bopcode_speed", String(speed));
+    localStorage.setItem("nyblcode_speed", String(speed));
   }, [speed]);
 
   const [botState, setBotState] = useState<BotState>(puzzle.bot_start);
@@ -477,11 +477,11 @@ export function PuzzlePlayground({
           <div className="flex-1 min-h-[200px] rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-700/40">
             <Editor
               height="100%"
-              language="bop"
+              language="nybl"
               theme={monacoTheme}
               value={code}
               onChange={(val) => setCode(val ?? "")}
-              beforeMount={registerBopLanguage}
+              beforeMount={registerNyblLanguage}
               onMount={handleEditorMount}
               options={{
                 minimap: { enabled: false },
@@ -544,7 +544,7 @@ export function PuzzlePlayground({
       </div>
 
       {/* Language Reference -- below the playground */}
-      <BopReference />
+      <NyblReference />
 
       {/* Celebration Overlay */}
       <CelebrationOverlay

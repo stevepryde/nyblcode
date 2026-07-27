@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-bopcode is an educational coding game where users write programs in "Bop" (a simple language powered by the `bop-lang` crate) to solve grid-based puzzles. A Rust backend compiles to WASM and runs simulations; a React frontend renders the grid, editor, and playback.
+nyblcode is an educational coding game where users write programs in "Nybl" (a simple language powered by the `nybl-lang` crate) to solve grid-based puzzles. A Rust backend compiles to WASM and runs simulations; a React frontend renders the grid, editor, and playback.
 
 ## Build & Development Commands
 
@@ -25,10 +25,10 @@ After changing any Rust code, run `make wasm` before testing in the browser. The
 ## Architecture
 
 ```
-crates/bopcode-wasm/     Rust library compiled to WASM
+crates/nyblcode-wasm/     Rust library compiled to WASM
   src/lib.rs             #[wasm_bindgen] exports: run_simulation, get_worlds, get_world_levels, get_level
   src/engine.rs          Simulation runner (parse → execute → collect actions → check objectives)
-  src/host.rs            BopCodeHost: implements bop-lang's BopHost trait with game commands (move, grab, look, etc.)
+  src/host.rs            NyblCodeHost: implements nybl-lang's NyblHost trait with game commands (move, grab, look, etc.)
   src/models.rs          Shared types: Grid, BotState, GameAction, SimulationResult, PuzzleConfig, etc.
   src/levels.rs          Loads level JSON from data/courses/, parses map strings into Grid
   src/pre_parser.rs      Pre-parse checks for friendly error messages (typos, reserved words)
@@ -37,11 +37,11 @@ crates/bopcode-wasm/     Rust library compiled to WASM
 web/                     React 19 + TypeScript frontend (Vite, Tailwind CSS 4, Bun)
   src/lib/wasm.ts        Lazy-loads WASM module, wraps exported functions with TS types
   src/lib/progress.ts    localStorage-based save system (progress, code, speed)
-  src/lib/monaco-bop.ts  Monaco syntax highlighting for Bop language
+  src/lib/monaco-nybl.ts  Monaco syntax highlighting for Nybl language
   src/types/game.ts      TypeScript types mirroring Rust models (must stay in sync)
   src/routes/            TanStack Router file-based routing (/, /play/$worldId)
   src/components/game/   Game UI: puzzle-playground (main view), game-grid (canvas renderer),
-                         playback-controls, puzzle-objective, celebration-overlay, bop-reference
+                         playback-controls, puzzle-objective, celebration-overlay, nybl-reference
   src/components/ui/     Reusable primitives (button, badge) using CVA
 ```
 

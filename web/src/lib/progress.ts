@@ -1,7 +1,7 @@
 import type { GameProgress, LevelProgress } from "@/types/game";
 
-const PROGRESS_KEY = "bopcode_progress";
-const CODE_PREFIX = "bopcode_code_";
+const PROGRESS_KEY = "nyblcode_progress";
+const CODE_PREFIX = "nyblcode_code_";
 
 export function getProgress(): GameProgress {
   try {
@@ -65,7 +65,7 @@ export function resetWorldProgress(
 
 export function getPlaybackSpeed(): number {
   try {
-    const raw = localStorage.getItem("bopcode_speed");
+    const raw = localStorage.getItem("nyblcode_speed");
     if (raw) return parseFloat(raw);
   } catch {
     // ignore
@@ -74,5 +74,5 @@ export function getPlaybackSpeed(): number {
 }
 
 export function savePlaybackSpeed(speed: number): void {
-  localStorage.setItem("bopcode_speed", String(speed));
+  localStorage.setItem("nyblcode_speed", String(speed));
 }

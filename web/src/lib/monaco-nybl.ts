@@ -1,13 +1,13 @@
 import type { Monaco } from "@monaco-editor/react";
 
-export function registerBopLanguage(monaco: Monaco) {
-  if (monaco.languages.getLanguages().some((lang: { id: string }) => lang.id === "bop")) {
+export function registerNyblLanguage(monaco: Monaco) {
+  if (monaco.languages.getLanguages().some((lang: { id: string }) => lang.id === "nybl")) {
     return;
   }
 
-  monaco.languages.register({ id: "bop" });
+  monaco.languages.register({ id: "nybl" });
 
-  monaco.languages.setMonarchTokensProvider("bop", {
+  monaco.languages.setMonarchTokensProvider("nybl", {
     keywords: [
       "let", "const", "fn", "pub", "return", "if", "else", "while",
       "for", "in", "repeat", "break", "continue", "use", "as",
@@ -86,7 +86,7 @@ export function registerBopLanguage(monaco: Monaco) {
     },
   });
 
-  monaco.languages.setLanguageConfiguration("bop", {
+  monaco.languages.setLanguageConfiguration("nybl", {
     comments: { lineComment: "//" },
     brackets: [
       ["{", "}"],

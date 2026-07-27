@@ -6,7 +6,7 @@ import { PlaybackControls } from "@/components/game/playback-controls";
 import { PuzzleObjectivePanel } from "@/components/game/puzzle-objective";
 import { CelebrationOverlay } from "@/components/game/celebration-overlay";
 import { runSimulationWithConfig } from "@/lib/wasm";
-import { registerBopLanguage } from "@/lib/monaco-bop";
+import { registerNyblLanguage } from "@/lib/monaco-nybl";
 import { useColorMode } from "@/lib/theme";
 import type {
   PuzzleConfig,
@@ -107,7 +107,7 @@ export function TestTab({ config, onConfigChange, code, onCodeChange }: TestTabP
   const [currentActionIndex, setCurrentActionIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [speed, setSpeed] = useState<PlaybackSpeed>(() => {
-    const saved = localStorage.getItem("bopcode_speed");
+    const saved = localStorage.getItem("nyblcode_speed");
     if (saved) {
       const n = Number(saved);
       if (n === 0.5 || n === 1 || n === 2 || n === 4) return n as PlaybackSpeed;
@@ -382,11 +382,11 @@ export function TestTab({ config, onConfigChange, code, onCodeChange }: TestTabP
         <div className="flex-1 min-h-[200px] rounded-lg overflow-hidden border border-zinc-200 dark:border-zinc-700/40">
           <Editor
             height="100%"
-            language="bop"
+            language="nybl"
             theme={colorMode === "dark" ? "vs-dark" : "vs"}
             value={code}
             onChange={(val) => onCodeChange(val ?? "")}
-            beforeMount={registerBopLanguage}
+            beforeMount={registerNyblLanguage}
             onMount={handleEditorMount}
             options={{
               minimap: { enabled: false },

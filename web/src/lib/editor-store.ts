@@ -1,7 +1,7 @@
 import type { PuzzleConfig, Tile } from "@/types/game";
 import { parseLevel, serializeLevel } from "@/lib/wasm";
 
-const STORAGE_KEY = "bopcode_editor";
+const STORAGE_KEY = "nyblcode_editor";
 
 export function createDefaultConfig(): PuzzleConfig {
   const width = 5;

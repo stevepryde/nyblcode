@@ -1,15 +1,15 @@
 {
     "world": {
-        "world_id": "bop-foundations",
-        "title": "Bop Foundations",
-        "description": "A slower, beginner-first path through Bop fundamentals with extra practice before each new concept.",
+        "world_id": "nybl-foundations",
+        "title": "Nybl Foundations",
+        "description": "A slower, beginner-first path through Nybl fundamentals with extra practice before each new concept.",
         "story_intro": "Take your time, practice each idea, and build confidence before moving on.",
         "theme": "grassy_plains",
         "sort_order": 0
     },
     "levels": [
         {
-            "level_id": "bop-beg-01",
+            "level_id": "nybl-beg-01",
             "title": "Step by Step",
             "description": "Move to the goal using simple right moves.",
             "map": [
@@ -22,10 +22,10 @@
             },
             "starter_code": "move(\"right\")\n",
             "hint": "Use move(\"right\") three times.",
-            "tutorial": "# Welcome to bopcode!\n\nYou're going to learn to code by solving puzzles. You control a **bot** on a grid by writing instructions.\n\n## Your first command: `move()`\n\nThe `move()` function moves your bot one tile in a direction:\n\n```\nmove(\"right\")\n```\n\nEach call moves the bot **one step**. To move further, use `move()` multiple times.\n\n## Your mission\n\nThe green tile is the **goal**. Write enough `move(\"right\")` calls to get there!\n\n---\n\nClick the **Puzzle** tab at the top to see the grid and start solving!"
+            "tutorial": "# Welcome to nyblcode!\n\nYou're going to learn to code by solving puzzles. You control a **bot** on a grid by writing instructions.\n\n## Your first command: `move()`\n\nThe `move()` function moves your bot one tile in a direction:\n\n```\nmove(\"right\")\n```\n\nEach call moves the bot **one step**. To move further, use `move()` multiple times.\n\n## Your mission\n\nThe green tile is the **goal**. Write enough `move(\"right\")` calls to get there!\n\n---\n\nClick the **Puzzle** tab at the top to see the grid and start solving!"
         },
         {
-            "level_id": "bop-beg-02",
+            "level_id": "nybl-beg-02",
             "title": "Longer Walk",
             "description": "Reach a farther goal with clean, consistent movement.",
             "map": [
@@ -41,7 +41,7 @@
             "tutorial": "# Practice: More Movement\n\nSame idea as last time, just a longer path. This is a good chance to get comfortable writing `move()` calls.\n\n## How your code runs\n\nYour instructions run **top to bottom**, one at a time:\n\n```\nmove(\"right\")   // runs first\nmove(\"right\")   // runs second\nmove(\"right\")   // runs third\n```\n\nThe bot follows each instruction in order.\n\n## Your mission\n\nThe goal is further away this time. Keep moving right until you reach it."
         },
         {
-            "level_id": "bop-beg-03",
+            "level_id": "nybl-beg-03",
             "title": "Turn the Corner",
             "description": "Use a mix of directions to reach the goal.",
             "map": [
@@ -61,7 +61,7 @@
             "tutorial": "# Moving in All Directions\n\nSo far you've only moved right. But the grid is 2D, so you can move in **four directions**:\n\n```\nmove(\"right\")\nmove(\"left\")\nmove(\"up\")\nmove(\"down\")\n```\n\n## Walls\n\nThe dark tiles are **walls**. You can't walk through them. If you try, your program will show a warning.\n\n## Your mission\n\nThe goal isn't in a straight line any more. You'll need to combine directions to get there."
         },
         {
-            "level_id": "bop-beg-04",
+            "level_id": "nybl-beg-04",
             "title": "Movement Checkpoint",
             "description": "Navigate a short route with walls and one final turn.",
             "map": [
@@ -81,7 +81,7 @@
             "tutorial": "# Checkpoint: Movement\n\nTime to put your movement skills together. This level has walls and a turn, so you'll need to plan your route before writing code.\n\n## Tips\n\n- Look at the grid and trace a path from the bot to the goal\n- Figure out which directions you need, and in what order\n- Remember: each `move()` is one step\n\nThere's nothing new here. If you can solve this, you're ready for the next concept!"
         },
         {
-            "level_id": "bop-beg-05",
+            "level_id": "nybl-beg-05",
             "title": "First Gem Pickup",
             "description": "Collect the gem and then reach the goal.",
             "map": [
@@ -97,7 +97,7 @@
             "tutorial": "# Collecting Gems\n\nSome tiles have **gems** on them. You can pick them up using the `grab()` function.\n\n## How `grab()` works\n\nWhen your bot is standing on a tile with a gem, call:\n\n```\ngrab()\n```\n\nThis picks up the gem. If there's no gem on the tile, `grab()` will cause an error, so only use it when you're on a gem!\n\n## Your mission\n\nMove to the gem, grab it, then continue to the goal."
         },
         {
-            "level_id": "bop-beg-06",
+            "level_id": "nybl-beg-06",
             "title": "Two Gems in a Row",
             "description": "Collect both gems, then finish at the goal.",
             "map": [
@@ -113,7 +113,7 @@
             "tutorial": "# Multiple Gems\n\nThis time there are two gems to collect. Your code still runs top to bottom, so plan the full path in advance.\n\n## Sequencing\n\nThink about the order of actions:\n\n```\nmove(\"right\")   // walk to gem\nmove(\"right\")\ngrab()           // pick it up\nmove(\"right\")   // keep going\n```\n\nYou need to be standing on the gem tile before calling `grab()`.\n\n## Your mission\n\nCollect both gems and reach the goal."
         },
         {
-            "level_id": "bop-beg-07",
+            "level_id": "nybl-beg-07",
             "title": "Gem Practice Checkpoint",
             "description": "A longer line with empty spaces between gems.",
             "map": [
@@ -129,7 +129,7 @@
             "tutorial": "# Checkpoint: Gems\n\nA longer path with gems spaced out along it. Be careful not to call `grab()` on a tile that doesn't have a gem.\n\n## Planning ahead\n\nIt helps to look at the grid and note exactly which tiles have gems. Then write your `move()` and `grab()` calls in the right order.\n\nOnce you've got this, we'll introduce a way to avoid writing so many lines of code!"
         },
         {
-            "level_id": "bop-beg-08",
+            "level_id": "nybl-beg-08",
             "title": "Your First repeat Loop",
             "description": "Use repeat to avoid writing the same line many times.",
             "map": [
@@ -145,7 +145,7 @@
             "tutorial": "# Loops: `repeat`\n\nWriting `move(\"right\")` eight times works, but there's a better way.\n\n## The `repeat` block\n\n`repeat` runs the same code multiple times:\n\n```\nrepeat 3 {\n    move(\"right\")\n}\n```\n\nThis is exactly the same as writing `move(\"right\")` three times, but much shorter.\n\n## How it works\n\n- `repeat N { ... }` runs the code inside the braces **N times**\n- N can be any whole number\n- The code inside the `{ }` can be any instructions\n\n## Your mission\n\nThe starter code already has a `repeat` block but the count is too low. Adjust the number so the bot reaches the goal."
         },
         {
-            "level_id": "bop-beg-09",
+            "level_id": "nybl-beg-09",
             "title": "repeat and grab",
             "description": "Apply a repeating move pattern while collecting gems.",
             "map": [
@@ -161,7 +161,7 @@
             "tutorial": "# Multiple Actions in a Loop\n\nA `repeat` block can contain **more than one instruction**:\n\n```\nrepeat 3 {\n    move(\"right\")\n    grab()\n}\n```\n\nThis moves right **and** grabs, three times in a row. The bot does both actions in order, then goes back to the top of the loop.\n\n## Think in patterns\n\nLook at the grid. Is there a repeating pattern? If the bot needs to do the same sequence of actions over and over, that's a perfect loop body.\n\n## Your mission\n\nGems are spread along the path. Find the pattern and write a loop that handles it."
         },
         {
-            "level_id": "bop-beg-10",
+            "level_id": "nybl-beg-10",
             "title": "Repeat Checkpoint",
             "description": "Use loops and path planning to collect gems in a small route.",
             "map": [
@@ -181,7 +181,7 @@
             "tutorial": "# Checkpoint: Loops\n\nThis level combines movement, gems, and loops in a 2D map. You might need more than one `repeat` block if the path changes direction.\n\n## Multiple loops\n\nYou can use several `repeat` blocks in sequence:\n\n```\nrepeat 5 {\n    move(\"right\")\n}\nrepeat 3 {\n    move(\"down\")\n}\n```\n\nThe first loop finishes completely before the second one starts.\n\n## Your mission\n\nNavigate the route, collect all the gems, and reach the goal. Use loops to keep your code short."
         },
         {
-            "level_id": "bop-beg-11",
+            "level_id": "nybl-beg-11",
             "title": "Only Grab When Needed",
             "description": "Use if gem_here() so grab() only runs on gem tiles.",
             "map": [
@@ -197,7 +197,7 @@
             "tutorial": "# Conditionals: `if`\n\nSometimes you only want to do something when a certain condition is true. That's what `if` is for.\n\n## The `if` statement\n\n```\nif gem_here() {\n    grab()\n}\n```\n\nThis grabs **only** if there's a gem on the current tile. If there's no gem, it does nothing and moves on.\n\n## Sensors\n\nYour bot has built-in sensors that return `true` or `false`:\n\n| Sensor | Returns `true` when... |\n|---|---|\n| `gem_here()` | There's a gem on your current tile |\n| `path_ahead()` | The tile ahead is walkable |\n| `wall_ahead()` | The tile ahead is a wall |\n\n## Combining `if` with loops\n\nYou can put `if` inside a loop to check on every step:\n\n```\nrepeat 5 {\n    move(\"right\")\n    if gem_here() {\n        grab()\n    }\n}\n```\n\n## Your mission\n\nGems are scattered along the path but not on every tile. Use `if gem_here()` to grab safely."
         },
         {
-            "level_id": "bop-beg-12",
+            "level_id": "nybl-beg-12",
             "title": "if Practice Lap",
             "description": "Collect all gems in a small map with branches.",
             "map": [
@@ -215,7 +215,7 @@
             "tutorial": "# Practice: Conditionals\n\nA longer corridor with gems in unpredictable positions. You don't want to hardcode where each gem is.\n\nThe pattern from last time works well here:\n\n```\nrepeat N {\n    move(\"right\")\n    if gem_here() {\n        grab()\n    }\n}\n```\n\nThis is a really common pattern in programming: loop through something, and act only when a condition is met.\n\n## Your mission\n\nCollect every gem on the way to the goal. Let `if` do the thinking for you."
         },
         {
-            "level_id": "bop-beg-13",
+            "level_id": "nybl-beg-13",
             "title": "while Until the Wall",
             "description": "Use while path_ahead() to move until blocked.",
             "map": [
@@ -235,7 +235,7 @@
             "tutorial": "# While Loops\n\nWith `repeat`, you need to know exactly how many times to loop. But sometimes you don't know the count in advance. That's where `while` comes in.\n\n## The `while` loop\n\nA `while` loop keeps running **as long as its condition is true**:\n\n```\nwhile path_ahead() {\n    move(\"right\")\n}\n```\n\nThis moves right until there's no more open path ahead. The bot checks the condition before each step.\n\n## `while` vs `repeat`\n\n- Use `repeat N` when you know the exact count\n- Use `while condition` when you want to keep going until something changes\n\n## Your mission\n\nUse `while` to walk until you're blocked, then change direction and keep going."
         },
         {
-            "level_id": "bop-beg-14",
+            "level_id": "nybl-beg-14",
             "title": "while + if Together",
             "description": "Combine a loop and a conditional to collect gems on the way.",
             "map": [
@@ -253,7 +253,7 @@
             "tutorial": "# Combining `while` + `if`\n\nNow let's put `while` and `if` together. This is one of the most useful patterns in programming.\n\n```\nwhile path_ahead() {\n    move(\"right\")\n    if gem_here() {\n        grab()\n    }\n}\n```\n\nEach time around the loop: move one step, then check for a gem. This repeats until the path ends.\n\n## Why this matters\n\nThis pattern shows up everywhere in real code: \"keep processing items, and handle each one based on what it is.\" You're already thinking like a programmer.\n\n## Your mission\n\nWalk to the goal and collect every gem along the way."
         },
         {
-            "level_id": "bop-beg-15",
+            "level_id": "nybl-beg-15",
             "title": "Checkpoint: Gentle Maze",
             "description": "A calm maze that reinforces planning, loops, and safe grabs.",
             "map": [
@@ -274,8 +274,8 @@
             "tutorial": "# Checkpoint: Putting It Together\n\nThis is a small maze that uses everything you've learned so far: movement in multiple directions, `grab()`, loops, and conditionals.\n\n## Your toolbox so far\n\n| Tool | What it does |\n|---|---|\n| `move(dir)` | Move one tile in a direction |\n| `grab()` | Pick up a gem |\n| `repeat N { }` | Run code N times |\n| `while cond { }` | Loop while condition is true |\n| `if cond { }` | Run code only if condition is true |\n\n## Tips\n\nBreak the maze into sections. Solve each section one at a time, then combine them.\n\n## Your mission\n\nNavigate the maze, collect all gems, and reach the goal."
         },
         {
-            "level_id": "bop-beg-16",
-            "title": "Bop Foundations Finale",
+            "level_id": "nybl-beg-16",
+            "title": "Nybl Foundations Finale",
             "description": "Final beginner challenge: collect gems and finish with clean structure.",
             "map": [
                 "#############",
@@ -291,7 +291,7 @@
             },
             "starter_code": "while path_ahead() {\n    move(\"right\")\n    if gem_here() {\n        grab()\n    }\n}\n",
             "hint": "Section it: grab the left gem, route through the middle bridge to the top-right lane, drop to the bottom-right gem, then return up and finish at the goal.",
-            "tutorial": "# Bop Foundations Finale\n\nThis is the biggest level yet. There's no single right answer, so use whatever combination of tools feels right.\n\n## Looking back\n\nYou started by writing `move(\"right\")` one step at a time. Now you can write loops that adapt to the grid and conditionals that make decisions for you. These are the same fundamental concepts used in every programming language.\n\n## Your mission\n\nCollect all the gems and reach the goal. Good luck!"
+            "tutorial": "# Nybl Foundations Finale\n\nThis is the biggest level yet. There's no single right answer, so use whatever combination of tools feels right.\n\n## Looking back\n\nYou started by writing `move(\"right\")` one step at a time. Now you can write loops that adapt to the grid and conditionals that make decisions for you. These are the same fundamental concepts used in every programming language.\n\n## Your mission\n\nCollect all the gems and reach the goal. Good luck!"
         }
     ]
 }

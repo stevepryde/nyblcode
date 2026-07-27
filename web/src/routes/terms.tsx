@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { ColorModeToggle } from "@/components/ui/color-mode-toggle";
-import { BopIcon } from "@/components/ui/bop-icon";
+import { NyblIcon } from "@/components/ui/nybl-icon";
 
 export const Route = createFileRoute("/terms")({
   component: TermsPage,
@@ -24,8 +24,8 @@ function TermsPage() {
               to="/"
               className="flex items-center gap-2 text-xl font-bold tracking-tight text-indigo-400"
             >
-              <BopIcon className="h-6 w-6" />
-              bopcode
+              <NyblIcon className="h-6 w-6" />
+              nyblcode
             </Link>
             <ColorModeToggle />
           </div>
@@ -41,7 +41,7 @@ function TermsPage() {
           </p>
 
           <p>
-            bopcode is a free, open educational tool for learning to code. By
+            nyblcode is a free, open educational tool for learning to code. By
             using the site, you agree to the following terms.
           </p>
 
@@ -49,7 +49,7 @@ function TermsPage() {
             Use of the service
           </h2>
           <p>
-            bopcode is provided free of charge for personal and educational use.
+            nyblcode is provided free of charge for personal and educational use.
             You may use it to learn programming concepts, practice coding, and
             explore the built-in puzzles. No account or registration is required.
           </p>
@@ -68,7 +68,7 @@ function TermsPage() {
             No warranties
           </h2>
           <p>
-            bopcode is provided "as is" without any warranties, express or
+            nyblcode is provided "as is" without any warranties, express or
             implied. We do our best to keep the site working and the content
             accurate, but we make no guarantees about availability, accuracy, or
             fitness for any particular purpose.
@@ -93,7 +93,7 @@ function TermsPage() {
             Limitation of liability
           </h2>
           <p>
-            To the fullest extent permitted by law, bopcode and its contributors
+            To the fullest extent permitted by law, nyblcode and its contributors
             shall not be liable for any indirect, incidental, special, or
             consequential damages arising from your use of the site. Since all
             processing happens in your browser, the risk of data loss is limited
@@ -116,7 +116,7 @@ function TermsPage() {
           <p>
             We may update these terms from time to time. Changes will be
             reflected on this page with an updated date. Continued use of
-            bopcode after changes constitutes acceptance of the new terms.
+            nyblcode after changes constitutes acceptance of the new terms.
           </p>
 
           <h2 className="text-xl font-semibold text-zinc-900 dark:text-white mt-8">
@@ -126,12 +126,12 @@ function TermsPage() {
             If you have questions about these terms, you can open an issue on
             the{" "}
             <a
-              href="https://github.com/probablysteve/bopcode"
+              href="https://github.com/probablysteve/nyblcode"
               target="_blank"
               rel="noopener noreferrer"
               className="text-indigo-500 dark:text-indigo-400 underline hover:no-underline"
             >
-              bopcode GitHub repository
+              nyblcode GitHub repository
             </a>
             .
           </p>

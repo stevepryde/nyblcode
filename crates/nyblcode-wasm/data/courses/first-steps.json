@@ -2,8 +2,8 @@
     "world": {
         "world_id": "first-steps",
         "title": "Fast Learner",
-        "description": "A faster introduction to Bop for learners who want to move quickly.",
-        "story_intro": "Move fast through Bop fundamentals with 14 compact challenges.",
+        "description": "A faster introduction to Nybl for learners who want to move quickly.",
+        "story_intro": "Move fast through Nybl fundamentals with 14 compact challenges.",
         "theme": "grassy_plains",
         "sort_order": 10
     },

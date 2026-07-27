@@ -1,11 +1,11 @@
-use bop::{BopError, BopHost, Value};
+use nybl::{NyblError, NyblHost, Value};
 
 use crate::models::{
     BotState, Direction, GameAction, GameActionKind, Grid, Position, PuzzleObjective,
     SimulationError, TileItem, TileType,
 };
 
-pub struct BopCodeHost {
+pub struct NyblCodeHost {
     pub bot: BotState,
     pub grid: Grid,
     pub actions: Vec<GameAction>,
@@ -15,7 +15,7 @@ pub struct BopCodeHost {
     pub halt_error: Option<SimulationError>,
 }
 
-impl BopCodeHost {
+impl NyblCodeHost {
     fn emit(&mut self, line: u32, action: GameActionKind) {
         self.actions.push(GameAction {
             line: Some(line),
@@ -41,8 +41,8 @@ impl BopCodeHost {
         self.puzzle_completed = self.completion.is_met(&self.bot, &self.grid, 0, 0);
     }
 
-    fn error(&self, line: u32, message: impl Into<String>) -> BopError {
-        BopError::runtime(message, line)
+    fn error(&self, line: u32, message: impl Into<String>) -> NyblError {
+        NyblError::runtime(message, line)
     }
 
     fn error_with_hint(
@@ -50,8 +50,8 @@ impl BopCodeHost {
         line: u32,
         message: impl Into<String>,
         hint: impl Into<String>,
-    ) -> BopError {
-        let mut error = BopError::runtime(message, line);
+    ) -> NyblError {
+        let mut error = NyblError::runtime(message, line);
         error.friendly_hint = Some(hint.into());
         error
     }
@@ -62,7 +62,7 @@ impl BopCodeHost {
         args: &[Value],
         expected: usize,
         line: u32,
-    ) -> Result<(), BopError> {
+    ) -> Result<(), NyblError> {
         if args.len() != expected {
             Err(self.error(
                 line,
@@ -79,7 +79,7 @@ impl BopCodeHost {
         }
     }
 
-    fn parse_direction(&self, val: &Value, line: u32) -> Result<Direction, BopError> {
+    fn parse_direction(&self, val: &Value, line: u32) -> Result<Direction, NyblError> {
         match val {
             Value::Str(s) => match s.to_lowercase().as_str() {
                 "up" => Ok(Direction::Up),
@@ -109,7 +109,7 @@ impl BopCodeHost {
 
     // ─── Game builtins ────────────────────────────────────────────
 
-    fn builtin_move(&mut self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_move(&mut self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("move", args, 1, line)?;
         let direction = self.parse_direction(&args[0], line)?;
         let from = self.bot.position;
@@ -185,7 +185,7 @@ impl BopCodeHost {
         Ok(Value::None)
     }
 
-    fn builtin_turn(&mut self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_turn(&mut self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("turn", args, 1, line)?;
         let dir_str = match &args[0] {
             Value::Str(s) => s.to_lowercase(),
@@ -208,7 +208,7 @@ impl BopCodeHost {
         Ok(Value::None)
     }
 
-    fn builtin_grab(&mut self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_grab(&mut self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("grab", args, 0, line)?;
         let pos = self.bot.position;
         if let Some(tile) = self.grid.get_tile_mut(pos) {
@@ -241,7 +241,7 @@ impl BopCodeHost {
         Ok(Value::None)
     }
 
-    fn builtin_drop(&mut self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_drop(&mut self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("drop", args, 0, line)?;
         let pos = self.bot.position;
         let tile_type = self.grid.get_tile(pos).map(|t| t.tile_type);
@@ -309,7 +309,7 @@ impl BopCodeHost {
         Ok(Value::None)
     }
 
-    fn builtin_say(&mut self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_say(&mut self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("say", args, 1, line)?;
         let message = format!("{}", args[0]);
         self.bot.message = Some(message.clone());
@@ -317,7 +317,7 @@ impl BopCodeHost {
         Ok(Value::None)
     }
 
-    fn builtin_wait(&mut self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_wait(&mut self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("wait", args, 1, line)?;
         match &args[0] {
             Value::Number(n) => {
@@ -329,7 +329,7 @@ impl BopCodeHost {
         Ok(Value::None)
     }
 
-    fn builtin_look(&self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_look(&self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("look", args, 1, line)?;
         let dir_str = match &args[0] {
             Value::Str(s) => s.to_lowercase(),
@@ -366,7 +366,7 @@ impl BopCodeHost {
         Ok(Value::new_str(result.to_string()))
     }
 
-    fn builtin_position(&self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_position(&self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("position", args, 0, line)?;
         Ok(Value::new_array(vec![
             Value::Number(self.bot.position.x as f64),
@@ -374,7 +374,7 @@ impl BopCodeHost {
         ]))
     }
 
-    fn builtin_facing(&self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_facing(&self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("facing", args, 0, line)?;
         let dir = match self.bot.direction {
             Direction::Up => "up",
@@ -385,7 +385,7 @@ impl BopCodeHost {
         Ok(Value::new_str(dir.to_string()))
     }
 
-    fn builtin_gem_ahead(&self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_gem_ahead(&self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("gem_ahead", args, 0, line)?;
         Ok(Value::Bool(
             self.look_ahead_tile()
@@ -393,7 +393,7 @@ impl BopCodeHost {
         ))
     }
 
-    fn builtin_wall_ahead(&self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_wall_ahead(&self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("wall_ahead", args, 0, line)?;
         Ok(Value::Bool(
             self.look_ahead_tile()
@@ -401,7 +401,7 @@ impl BopCodeHost {
         ))
     }
 
-    fn builtin_path_ahead(&self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_path_ahead(&self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("path_ahead", args, 0, line)?;
         let (dx, dy) = self.bot.direction.to_offset();
         let pos = Position::new(self.bot.position.x + dx, self.bot.position.y + dy);
@@ -416,7 +416,7 @@ impl BopCodeHost {
         Ok(Value::Bool(walkable))
     }
 
-    fn builtin_gem_here(&self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_gem_here(&self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("gem_here", args, 0, line)?;
         Ok(Value::Bool(
             self.grid
@@ -425,12 +425,12 @@ impl BopCodeHost {
         ))
     }
 
-    fn builtin_has_gem(&self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_has_gem(&self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("has_gem", args, 0, line)?;
         Ok(Value::Bool(self.bot.gems > 0))
     }
 
-    fn builtin_pit_ahead(&self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_pit_ahead(&self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("pit_ahead", args, 0, line)?;
         Ok(Value::Bool(
             self.look_ahead_tile()
@@ -438,7 +438,7 @@ impl BopCodeHost {
         ))
     }
 
-    fn builtin_key_ahead(&self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_key_ahead(&self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("key_ahead", args, 0, line)?;
         Ok(Value::Bool(
             self.look_ahead_tile()
@@ -446,7 +446,7 @@ impl BopCodeHost {
         ))
     }
 
-    fn builtin_key_here(&self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_key_here(&self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("key_here", args, 0, line)?;
         Ok(Value::Bool(
             self.grid
@@ -455,7 +455,7 @@ impl BopCodeHost {
         ))
     }
 
-    fn builtin_diamond_ahead(&self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_diamond_ahead(&self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("diamond_ahead", args, 0, line)?;
         Ok(Value::Bool(
             self.look_ahead_tile()
@@ -463,7 +463,7 @@ impl BopCodeHost {
         ))
     }
 
-    fn builtin_diamond_here(&self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_diamond_here(&self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("diamond_here", args, 0, line)?;
         Ok(Value::Bool(
             self.grid
@@ -472,17 +472,17 @@ impl BopCodeHost {
         ))
     }
 
-    fn builtin_has_key(&self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_has_key(&self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("has_key", args, 0, line)?;
         Ok(Value::Bool(self.bot.keys > 0))
     }
 
-    fn builtin_has_diamond(&self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_has_diamond(&self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("has_diamond", args, 0, line)?;
         Ok(Value::Bool(self.bot.diamonds > 0))
     }
 
-    fn builtin_inventory(&self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_inventory(&self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("inventory", args, 0, line)?;
         Ok(Value::new_dict(vec![
             ("gems".to_string(), Value::Number(self.bot.gems as f64)),
@@ -491,7 +491,7 @@ impl BopCodeHost {
         ]))
     }
 
-    fn builtin_inventory_count(&self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_inventory_count(&self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("inventory_count", args, 1, line)?;
         let item_type = match &args[0] {
             Value::Str(s) => s.to_lowercase(),
@@ -514,7 +514,7 @@ impl BopCodeHost {
         Ok(Value::Number(count as f64))
     }
 
-    fn builtin_tile_type(&self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_tile_type(&self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("tile_type", args, 0, line)?;
         let result = match self.grid.get_tile(self.bot.position) {
             None => "wall",
@@ -531,7 +531,7 @@ impl BopCodeHost {
         Ok(Value::new_str(result.to_string()))
     }
 
-    fn builtin_grid_size(&self, args: &[Value], line: u32) -> Result<Value, BopError> {
+    fn builtin_grid_size(&self, args: &[Value], line: u32) -> Result<Value, NyblError> {
         self.expect_args("grid_size", args, 0, line)?;
         Ok(Value::new_array(vec![
             Value::Number(self.grid.width as f64),
@@ -540,10 +540,10 @@ impl BopCodeHost {
     }
 }
 
-// ─── BopHost implementation ───────────────────────────────────────────────
+// ─── NyblHost implementation ───────────────────────────────────────────────
 
-impl BopHost for BopCodeHost {
-    fn call(&mut self, name: &str, args: &[Value], line: u32) -> Option<Result<Value, BopError>> {
+impl NyblHost for NyblCodeHost {
+    fn call(&mut self, name: &str, args: &[Value], line: u32) -> Option<Result<Value, NyblError>> {
         let result = match name {
             "move" => self.builtin_move(args, line),
             "turn" => self.builtin_turn(args, line),
@@ -584,17 +584,17 @@ impl BopHost for BopCodeHost {
         });
     }
 
-    fn resolve_module(&mut self, name: &str) -> Option<Result<String, BopError>> {
-        bop::stdlib::resolve(name).map(|source| Ok(source.to_string()))
+    fn resolve_module(&mut self, name: &str) -> Option<Result<String, NyblError>> {
+        nybl::stdlib::resolve(name).map(|source| Ok(source.to_string()))
     }
 
     fn function_hint(&self) -> &str {
         "Available game functions: move, turn, grab, drop, say, wait, look, position, facing"
     }
 
-    fn on_tick(&mut self) -> Result<(), BopError> {
+    fn on_tick(&mut self) -> Result<(), NyblError> {
         if self.puzzle_completed || self.halted {
-            Err(BopError::runtime("halted", 0))
+            Err(NyblError::runtime("halted", 0))
         } else {
             Ok(())
         }
@@ -603,7 +603,7 @@ impl BopHost for BopCodeHost {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────
 
-pub fn bop_to_sim_error(e: BopError) -> SimulationError {
+pub fn nybl_to_sim_error(e: NyblError) -> SimulationError {
     SimulationError {
         line: e.line,
         column: e.column,

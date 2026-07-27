@@ -1,7 +1,7 @@
 {
     "world": {
-        "world_id": "bop-operations",
-        "title": "Bop Operations",
+        "world_id": "nybl-operations",
+        "title": "Nybl Operations",
         "description": "Intermediate and advanced mission design with doors, keys, pits, diamonds, and vault logistics.",
         "story_intro": "Plan routes, manage inventory, and solve larger open arenas with multiple objectives.",
         "theme": "crystal_caves",
@@ -9,7 +9,7 @@
     },
     "levels": [
         {
-            "level_id": "bop-int-01",
+            "level_id": "nybl-int-01",
             "title": "Gate Warmup",
             "description": "Grab a key, unlock the door, and reach the finish.",
             "map": [
@@ -24,10 +24,10 @@
             },
             "starter_code": "move(\"right\")\n",
             "hint": "Pick up the key first. A locked door consumes one key when you step onto it.",
-            "tutorial": "# Welcome to Bop Operations!\n\nThis world introduces new tile types that require planning ahead.\n\n## Keys and Doors\n\nYou'll see **key tiles** and **locked doors** on the grid.\n\n- Stand on a key tile and call `grab()` to pick it up\n- When you step onto a locked door, one key is automatically consumed to open it\n- If you don't have a key, you can't pass through the door\n\n## How it works\n\n```\nmove(\"right\")\nmove(\"right\")\ngrab()          // pick up the key\nmove(\"right\")\nmove(\"right\")   // door opens automatically\n```\n\nAny key opens any door — you don't need to match them.\n\n## Your mission\n\nGrab the key, walk through the locked door, and reach the goal.\n\n---\n\nClick the **Puzzle** tab at the top to see the grid and start solving!"
+            "tutorial": "# Welcome to Nybl Operations!\n\nThis world introduces new tile types that require planning ahead.\n\n## Keys and Doors\n\nYou'll see **key tiles** and **locked doors** on the grid.\n\n- Stand on a key tile and call `grab()` to pick it up\n- When you step onto a locked door, one key is automatically consumed to open it\n- If you don't have a key, you can't pass through the door\n\n## How it works\n\n```\nmove(\"right\")\nmove(\"right\")\ngrab()          // pick up the key\nmove(\"right\")\nmove(\"right\")   // door opens automatically\n```\n\nAny key opens any door — you don't need to match them.\n\n## Your mission\n\nGrab the key, walk through the locked door, and reach the goal.\n\n---\n\nClick the **Puzzle** tab at the top to see the grid and start solving!"
         },
         {
-            "level_id": "bop-int-02",
+            "level_id": "nybl-int-02",
             "title": "Relay Access",
             "description": "Unlock one gate to reach a second key, then open the final gate.",
             "map": [
@@ -49,7 +49,7 @@
             "tutorial": "# Multi-door Planning\n\nThis level has multiple doors and multiple keys. Each door consumes one key when you walk through it, so the **order** you collect keys and open doors matters.\n\n## Key management\n\n- You can carry multiple keys at once\n- Each door uses up exactly one key\n- If you open a door before picking up a key you need later, you might get stuck\n\n## Planning your route\n\nBefore writing code, look at the grid and figure out:\n\n1. Where are the keys?\n2. Where are the doors?\n3. What order should you collect and use them?\n\n## Your mission\n\nNavigate through multiple locked doors by collecting keys in the right order. Reach the goal!"
         },
         {
-            "level_id": "bop-int-03",
+            "level_id": "nybl-int-03",
             "title": "Pit Scout",
             "description": "Use a safe route around pits in a larger open arena.",
             "map": [
@@ -72,7 +72,7 @@
             "tutorial": "# Pit Safety\n\nSome tiles are **pits**. If your bot steps onto a pit, it falls in and the simulation ends!\n\n## The `pit_ahead()` sensor\n\n| Sensor | Returns `true` when... |\n|---|---|\n| `pit_ahead()` | The tile ahead (in facing direction) is a pit |\n\nUse `pit_ahead()` to check before moving:\n\n```\nif !pit_ahead() {\n    move(\"right\")\n}\n```\n\n## A tricky detail\n\n`path_ahead()` returns `true` for pit tiles because they're technically walkable — the bot just won't survive! So use `pit_ahead()` as an extra safety check.\n\n## Your mission\n\nNavigate around the pits to reach the goal. Plan a safe route!"
         },
         {
-            "level_id": "bop-int-04",
+            "level_id": "nybl-int-04",
             "title": "Safe Crossing",
             "description": "Collect a key, cross a gated chokepoint, and avoid the pit lane.",
             "map": [
@@ -95,7 +95,7 @@
             "tutorial": "# Route Discipline\n\nThis level combines keys, doors, and pits. You'll need to plan a safe route and keep your code efficient.\n\n## Using loops for navigation\n\nWhen your path has repeating sections, use loops instead of writing each move by hand:\n\n```\nrepeat 3 {\n    move(\"down\")\n}\ngrab()\nrepeat 2 {\n    move(\"right\")\n}\n```\n\n## Combining mechanics\n\nYou might need to:\n1. Navigate around pits to reach a key\n2. Pick up the key with `grab()`\n3. Route to the locked door\n4. Reach the goal\n\nLook for patterns in each section to keep your instruction count low.\n\n## Your mission\n\nCollect the key, unlock the door, avoid the pits, and reach the goal."
         },
         {
-            "level_id": "bop-int-05",
+            "level_id": "nybl-int-05",
             "title": "Diamond Delivery",
             "description": "Collect a diamond, deposit it in a diamond vault, then finish.",
             "map": [
@@ -126,7 +126,7 @@
             "tutorial": "# Diamond Vaults\n\nDiamonds are a new collectible. Like gems, you pick them up with `grab()`.\n\n## The `drop()` function\n\n`drop()` is a new command. It deposits one item from your inventory into a vault.\n\n- **Diamond vaults** accept diamonds\n- Stand on the vault tile and call `drop()` to deposit\n- Each `drop()` deposits one item, so call it multiple times if you're carrying more\n\n## Example\n\n```\nmove(\"right\")\ngrab()          // pick up diamond\nmove(\"right\")\nmove(\"right\")\ndrop()          // deposit at vault\n```\n\n## Your mission\n\nCollect the diamond, deposit it at the diamond vault, and reach the goal."
         },
         {
-            "level_id": "bop-int-06",
+            "level_id": "nybl-int-06",
             "title": "Double Diamond Circuit",
             "description": "Collect two diamonds, deposit both, then route to the finish.",
             "map": [
@@ -158,7 +158,7 @@
             "tutorial": "# Inventory and Drop-off\n\nYou can carry multiple diamonds at once. This lets you plan more efficient routes.\n\n## Batching pickups\n\nInstead of collecting one diamond, depositing it, then going back for the next one, try collecting several before making a trip to the vault:\n\n```\n// collect first diamond\nmove(\"right\")\ngrab()\n// collect second diamond\nmove(\"right\")\ngrab()\n// go to vault and deposit both\nmove(\"down\")\ndrop()\ndrop()\n```\n\nEach `drop()` deposits one diamond. Call it once per diamond you're carrying.\n\n## Your mission\n\nCollect both diamonds, deposit them at the vault, and reach the goal. Plan your route to minimise backtracking!"
         },
         {
-            "level_id": "bop-int-07",
+            "level_id": "nybl-int-07",
             "title": "Gem Bank",
             "description": "Collect gems, deposit them in a gem vault, and then finish.",
             "map": [
@@ -190,7 +190,7 @@
             "tutorial": "# Gem Vaults\n\nGem vaults work just like diamond vaults, but for gems.\n\n## Depositing gems\n\nStand on the gem vault and call `drop()` to deposit one gem at a time:\n\n```\n// collect gems\ngrab()\nmove(\"right\")\ngrab()\n// go to vault\nmove(\"down\")\ndrop()\ndrop()\n```\n\n## Completion objective\n\nThis level requires you to deposit **all** gems. That means:\n\n- No gems left on the grid\n- No gems left in your inventory\n- Everything deposited at the vault\n\n## Your mission\n\nCollect all the gems, deposit them at the gem vault, and reach the goal."
         },
         {
-            "level_id": "bop-int-08",
+            "level_id": "nybl-int-08",
             "title": "Mixed Cargo",
             "description": "Collect both gems and diamonds, deposit each at the correct vault, then finish.",
             "map": [
@@ -226,7 +226,7 @@
             "tutorial": "# Mixed Cargo\n\nThis level has **both** gems and diamonds, each with their own vault. You need to deposit each item at the correct vault type.\n\n## Two vault types\n\n| Vault | Accepts |\n|---|---|\n| Gem vault | Gems |\n| Diamond vault | Diamonds |\n\n`drop()` automatically deposits the right item when you're standing on the matching vault.\n\n## The `tile_type()` sensor\n\nIf you need to check what kind of tile you're standing on:\n\n```\nif tile_type() == \"gem_vault\" {\n    drop()\n}\n```\n\n`tile_type()` returns strings like `\"gem_vault\"`, `\"diamond_vault\"`, `\"floor\"`, etc.\n\n## Strategy\n\nIn larger maps, it's often more efficient to batch your work: collect several items, then deposit them, rather than going back and forth.\n\n## Your mission\n\nCollect all gems and diamonds, deposit each at the correct vault, and reach the goal."
         },
         {
-            "level_id": "bop-int-09",
+            "level_id": "nybl-int-09",
             "title": "Avoid the Pits",
             "description": "Unlock the sector gate, collect the gem, and return to finish.",
             "map": [
@@ -250,7 +250,7 @@
             "tutorial": "# Combining Pits, Keys, and Gems\n\nThis level brings together several mechanics. You'll need to navigate pits, unlock a door, and collect a gem.\n\n## Planning complex routes\n\nWhen a level has multiple mechanics, break it into steps:\n\n1. **Survey the grid** — where are the keys, doors, pits, and collectibles?\n2. **Plan the order** — what do you need to pick up first?\n3. **Find safe paths** — which routes avoid pits?\n4. **Write the code** — one section at a time\n\n## Your mission\n\nGrab the key, unlock the door, collect the gem, and reach the goal — all while avoiding the pits."
         },
         {
-            "level_id": "bop-int-10",
+            "level_id": "nybl-int-10",
             "title": "Cargo Lock",
             "description": "Bring two diamonds through a gate and deposit them before finishing.",
             "map": [
@@ -285,7 +285,7 @@
             "tutorial": "# Throughput Planning\n\nBigger maps often have distinct **sectors** separated by walls or doors. Crossing between sectors costs steps, so planning an efficient route pays off.\n\n## Thinking about efficiency\n\nTry to finish everything you need in one area before moving to the next. Ask yourself:\n\n- Can I collect all items in this sector before leaving?\n- What's the shortest path to the vault after collecting?\n- Do I need to save a key for a door I haven't reached yet?\n\n## Using loops\n\nIf you spot repeating patterns in your route, loops can save instructions:\n\n```\nrepeat 4 {\n    move(\"down\")\n}\ngrab()\nrepeat 3 {\n    move(\"right\")\n}\n```\n\n## Your mission\n\nCollect the diamonds, deposit them at the vault, and reach the goal. Plan your route through the sectors carefully!"
         },
         {
-            "level_id": "bop-int-11",
+            "level_id": "nybl-int-11",
             "title": "Operations Maze",
             "description": "A single maze-style mission with mixed logistics and a gated crossing.",
             "map": [
@@ -323,7 +323,7 @@
             "tutorial": "# Mixed Constraints\n\nThis is a maze-style level that combines everything you've learned: keys, doors, gems, diamonds, vaults, and pits.\n\n## Your toolbox\n\n| Command | What it does |\n|---|---|\n| `grab()` | Pick up item on current tile (key, gem, or diamond) |\n| `drop()` | Deposit one item at the matching vault |\n| `move(dir)` | Move one tile in a direction |\n\n## Sensors\n\n| Sensor | Returns |\n|---|---|\n| `gem_here()` | `true` if there's a gem on your tile |\n| `diamond_here()` | `true` if there's a diamond on your tile |\n| `key_here()` | `true` if there's a key on your tile |\n| `pit_ahead()` | `true` if the tile ahead is a pit |\n| `tile_type()` | The type of your current tile as a string |\n\n## Your mission\n\nCollect all gems and diamonds, deposit each at the correct vault, and reach the goal. Watch out for pits and locked doors!"
         },
         {
-            "level_id": "bop-int-12",
+            "level_id": "nybl-int-12",
             "title": "Operations Finale",
             "description": "Use keys, gems, and diamonds to complete the final objectives.",
             "map": [

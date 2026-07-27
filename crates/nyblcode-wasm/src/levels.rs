@@ -6,8 +6,8 @@ use crate::models::{
 };
 use serde::{Deserialize, Serialize};
 
-const BOP_FOUNDATIONS_DATA: &str = include_str!("../data/courses/bop-foundations.json");
-const BOP_OPERATIONS_DATA: &str = include_str!("../data/courses/bop-operations.json");
+const NYBL_FOUNDATIONS_DATA: &str = include_str!("../data/courses/nybl-foundations.json");
+const NYBL_OPERATIONS_DATA: &str = include_str!("../data/courses/nybl-operations.json");
 const FIRST_STEPS_DATA: &str = include_str!("../data/courses/first-steps.json");
 
 #[derive(Debug, Clone)]
@@ -130,22 +130,22 @@ struct ParsedCoursePack {
 }
 
 static FIRST_STEPS_PACK: OnceLock<ParsedCoursePack> = OnceLock::new();
-static BOP_FOUNDATIONS_PACK: OnceLock<ParsedCoursePack> = OnceLock::new();
-static BOP_OPERATIONS_PACK: OnceLock<ParsedCoursePack> = OnceLock::new();
+static NYBL_FOUNDATIONS_PACK: OnceLock<ParsedCoursePack> = OnceLock::new();
+static NYBL_OPERATIONS_PACK: OnceLock<ParsedCoursePack> = OnceLock::new();
 
 fn first_steps_pack() -> &'static ParsedCoursePack {
     FIRST_STEPS_PACK
         .get_or_init(|| parse_course_pack(FIRST_STEPS_DATA, "first-steps.json"))
 }
 
-fn bop_foundations_pack() -> &'static ParsedCoursePack {
-    BOP_FOUNDATIONS_PACK
-        .get_or_init(|| parse_course_pack(BOP_FOUNDATIONS_DATA, "bop-foundations.json"))
+fn nybl_foundations_pack() -> &'static ParsedCoursePack {
+    NYBL_FOUNDATIONS_PACK
+        .get_or_init(|| parse_course_pack(NYBL_FOUNDATIONS_DATA, "nybl-foundations.json"))
 }
 
-fn bop_operations_pack() -> &'static ParsedCoursePack {
-    BOP_OPERATIONS_PACK
-        .get_or_init(|| parse_course_pack(BOP_OPERATIONS_DATA, "bop-operations.json"))
+fn nybl_operations_pack() -> &'static ParsedCoursePack {
+    NYBL_OPERATIONS_PACK
+        .get_or_init(|| parse_course_pack(NYBL_OPERATIONS_DATA, "nybl-operations.json"))
 }
 
 fn parse_course_pack(data: &str, file_name: &str) -> ParsedCoursePack {
@@ -444,8 +444,8 @@ fn parse_ascii_map(
 pub fn get_hardcoded_worlds() -> Vec<HardcodedWorldDefinition> {
     vec![
         first_steps_pack().world.clone(),
-        bop_foundations_pack().world.clone(),
-        bop_operations_pack().world.clone(),
+        nybl_foundations_pack().world.clone(),
+        nybl_operations_pack().world.clone(),
     ]
 }
 
@@ -460,8 +460,8 @@ pub fn get_all_world_ids() -> Vec<String> {
 pub fn get_all_puzzles() -> Vec<PuzzleConfig> {
     let mut puzzles = Vec::new();
     puzzles.extend(first_steps_pack().puzzles.clone());
-    puzzles.extend(bop_foundations_pack().puzzles.clone());
-    puzzles.extend(bop_operations_pack().puzzles.clone());
+    puzzles.extend(nybl_foundations_pack().puzzles.clone());
+    puzzles.extend(nybl_operations_pack().puzzles.clone());
     puzzles
 }
 
@@ -475,13 +475,13 @@ pub fn get_puzzle(puzzle_id: &str) -> Option<PuzzleConfig> {
         .puzzles_by_id
         .get(puzzle_id)
         .cloned()
-        .or_else(|| bop_foundations_pack().puzzles_by_id.get(puzzle_id).cloned())
-        .or_else(|| bop_operations_pack().puzzles_by_id.get(puzzle_id).cloned())
+        .or_else(|| nybl_foundations_pack().puzzles_by_id.get(puzzle_id).cloned())
+        .or_else(|| nybl_operations_pack().puzzles_by_id.get(puzzle_id).cloned())
 }
 
 /// Returns all puzzle IDs belonging to a given world.
 pub fn get_world_puzzle_ids(world_id: &str) -> Vec<String> {
-    for pack_fn in [first_steps_pack, bop_foundations_pack, bop_operations_pack] {
+    for pack_fn in [first_steps_pack, nybl_foundations_pack, nybl_operations_pack] {
         let pack = pack_fn();
         if pack.world.world_id == world_id {
             return pack.puzzle_ids.clone();
