@@ -1,0 +1,11 @@
+name: "nyblcode"
+
+operation:
+  deploy:
+    default: true
+    description: "Build and deploy nyblcode to Cloudflare Pages"
+    stage:
+      - type: "script"
+        description: "Build, verify, and deploy the site to Cloudflare Pages"
+        path: "scripts/deploy-pages.sh"
+        confirm: true
