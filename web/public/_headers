@@ -1,0 +1,25 @@
+# HTML entry points must not outlive the fingerprinted assets they reference.
+/
+  Cache-Control: no-store
+
+/index.html
+  Cache-Control: no-store
+
+/playground
+  Cache-Control: no-store
+
+/play/*
+  Cache-Control: no-store
+
+/editor
+  Cache-Control: no-store
+
+/privacy
+  Cache-Control: no-store
+
+/terms
+  Cache-Control: no-store
+
+# Vite fingerprints production assets, so these can be cached permanently.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
