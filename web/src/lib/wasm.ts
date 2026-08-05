@@ -3,6 +3,7 @@ import type {
   WorldInfo,
   LevelSummary,
   PuzzleConfig,
+  PlaygroundResult,
 } from "@/types/game";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,6 +30,11 @@ export function runSimulationWithConfig(
 ): SimulationResult {
   if (!wasmModule) throw new Error("WASM not initialized");
   return wasmModule.run_simulation_with_config(config, code) as SimulationResult;
+}
+
+export function runPlayground(code: string): PlaygroundResult {
+  if (!wasmModule) throw new Error("WASM not initialized");
+  return wasmModule.run_playground(code) as PlaygroundResult;
 }
 
 export function getWorlds(): WorldInfo[] {

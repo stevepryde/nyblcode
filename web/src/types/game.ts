@@ -77,6 +77,11 @@ export interface SimulationResult {
   error: SimulationError | null;
 }
 
+export interface PlaygroundResult {
+  output: string[];
+  error: SimulationError | null;
+}
+
 export type PuzzleObjective =
   | { type: "reach_position"; x: number; y: number }
   | { type: "collect_all_gems" }

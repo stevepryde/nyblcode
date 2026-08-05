@@ -293,6 +293,12 @@ pub struct SimulationResult {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct PlaygroundResult {
+    pub output: Vec<String>,
+    pub error: Option<SimulationError>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(tag = "type", rename_all = "snake_case")]
 pub enum PuzzleObjective {
     ReachPosition { x: i32, y: i32 },

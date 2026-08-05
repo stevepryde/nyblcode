@@ -2,9 +2,16 @@ pub mod engine;
 pub mod host;
 pub mod levels;
 pub mod models;
+pub mod playground;
 pub mod pre_parser;
 
 use wasm_bindgen::prelude::*;
+
+#[wasm_bindgen]
+pub fn run_playground(code: &str) -> JsValue {
+    let result = playground::run(code);
+    serde_wasm_bindgen::to_value(&result).unwrap_or(JsValue::NULL)
+}
 
 #[wasm_bindgen]
 pub fn run_simulation(puzzle_id: &str, code: &str) -> JsValue {

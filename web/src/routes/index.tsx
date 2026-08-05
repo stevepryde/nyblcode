@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { Star, Pencil, Upload, X } from "lucide-react";
+import { Braces, Star, Pencil, Upload, X } from "lucide-react";
 import { useMemo, useState, useRef } from "react";
 import { getWorlds, getWorldLevels } from "@/lib/wasm";
 import { getProgress } from "@/lib/progress";
@@ -66,12 +66,19 @@ function HomePage() {
         <div className="min-h-screen w-full bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white flex flex-col">
             {/* Header */}
             <header className="bg-zinc-50 dark:bg-zinc-900/80 border-b border-zinc-200 dark:border-zinc-800">
-                <div className="max-w-5xl mx-auto px-6 py-4 flex items-center gap-2">
+                <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex flex-wrap items-center gap-2">
                     <h1 className="flex items-center gap-2 text-xl font-bold tracking-tight text-indigo-400">
                         <NyblIcon className="h-6 w-6" />
                         nyblcode
                     </h1>
-                    <div className="ml-auto flex items-center gap-2">
+                    <div className="w-full flex flex-wrap items-center gap-2 sm:w-auto sm:ml-auto">
+                        <button
+                            onClick={() => navigate({ to: "/playground" })}
+                            className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white bg-zinc-100 dark:bg-zinc-800/60 hover:bg-zinc-200 dark:hover:bg-zinc-700/60 border border-zinc-300 dark:border-zinc-700 rounded-lg transition-colors cursor-pointer"
+                        >
+                            <Braces className="h-4 w-4" />
+                            Playground
+                        </button>
                         <button
                             onClick={() => setShowCustomModal(true)}
                             className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-zinc-500 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white bg-zinc-100 dark:bg-zinc-800/60 hover:bg-zinc-200 dark:hover:bg-zinc-700/60 border border-zinc-300 dark:border-zinc-700 rounded-lg transition-colors cursor-pointer"
