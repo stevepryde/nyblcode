@@ -5,7 +5,33 @@ operation:
     default: true
     description: "Build and deploy nyblcode to Cloudflare Pages"
     stage:
-      - type: "script"
-        description: "Build, verify, and deploy the site to Cloudflare Pages"
-        path: "scripts/deploy-pages.sh"
+      - type: source_revision
+        id: source
+        require_clean: false
+
+      - type: local_artifact
+        id: web
+        description: "Test, build WASM, and assemble the web bundle"
+        commands:
+          - { program: cargo, args: [test, --workspace] }
+          - { program: make, args: [wasm] }
+          - { program: bun, args: [install, --frozen-lockfile], cwd: web }
+          - { program: bun, args: [run, lint], cwd: web }
+          - { program: bun, args: [run, build], cwd: web }
+        artifact:
+          path: web/dist
+          require:
+            - index.html
+
+      - type: cloudflare_pages
+        description: "Deploy the site to Cloudflare Pages"
+        profile: personal
+        project: nyblcode
+        directory: "{{stages.web.artifact_path}}"
+        branch: main
+        wrangler: web/node_modules/.bin/wrangler
+        commit:
+          hash: "{{stages.source.revision}}"
+          message: "{{stages.source.message}}"
+          dirty: "{{stages.source.dirty}}"
         confirm: true

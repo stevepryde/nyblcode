@@ -58,3 +58,5 @@ web/                     React 19 + TypeScript frontend (Vite, Tailwind CSS 4, B
 ## Deployment
 
 Cloudflare Pages via GitHub Actions. CI runs `cargo test`, builds WASM with wasm-pack, builds frontend with Vite, deploys on push to main.
+
+Manual deploys use typed spdeploy stages in `deploy.yml` (`spdeploy --config deploy.yml --operation deploy`): source_revision → local_artifact (tests, WASM, web build) → cloudflare_pages (profile `personal`, wrangler from `web/node_modules/.bin`).
